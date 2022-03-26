@@ -11,14 +11,14 @@ const LoginPage: NextPage = () => {
         <title>Login - Learning Day</title>
       </Head>
       <div className="w-1/4 h-auto flex flex-col items-center justify-center bg-white rounded-lg p-4">
-      <FadeIn transitionDuration={1000}>
-          <Image
-            src="/img/logo/logo-dark.png"
-            alt="Learning Day"
-            width={120}
-            height={120}
-            priority={true}
-          />
+        <FadeIn transitionDuration={1000}>
+            <Image
+              src="/img/logo/logo-dark.png"
+              alt="Learning Day"
+              width={120}
+              height={120}
+              priority={true}
+            />
         </FadeIn>
         <Login/>
       </div>
