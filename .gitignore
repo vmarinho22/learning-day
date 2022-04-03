@@ -39,4 +39,9 @@ yarn-error.log*
 *.tsbuildinfo
 
 # postgres
-.pgdata
+.data
+
+#Prima
+src/database/prisma/migrations
+src/database/prisma/migrations/*
+src/database/prisma/seed.js
