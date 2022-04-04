@@ -15,6 +15,7 @@
     "seed": "tsc src/database/prisma/seed.ts"
   },
   "dependencies": {
+    "@apollo/client": "^3.5.10",
     "@emotion/react": "^11.8.2",
     "@emotion/styled": "^11.8.1",
     "@fortawesome/fontawesome-svg-core": "^6.1.0",
@@ -22,9 +23,13 @@
     "@fortawesome/free-solid-svg-icons": "^6.1.0",
     "@mui/material": "^5.5.1",
     "@prisma/client": "^3.11.1",
+    "apollo-server-micro": "^3.6.7",
     "axios": "^0.26.1",
     "bcrypt": "^5.0.1",
+    "graphql": "^16.3.0",
     "jsonwebtoken": "^8.5.1",
+    "micro": "^9.3.4",
+    "micro-cors": "^0.1.1",
     "next": "12.1.0",
     "react": "17.0.2",
     "react-dom": "17.0.2",
@@ -35,6 +40,7 @@
   "devDependencies": {
     "@types/bcrypt": "^5.0.0",
     "@types/jsonwebtoken": "^8.5.8",
+    "@types/micro-cors": "^0.1.2",
     "@types/node": "17.0.21",
     "@types/react": "17.0.41",
     "autoprefixer": "^10.4.4",
