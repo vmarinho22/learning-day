@@ -62,6 +62,7 @@ const Login: FC = () => {
         <Button
           className="w-full mb-1 mt-1 text-base uppercase text-white bg-pr-purple hover:bg-pr-ocean hover:text-black transition ease-in-out delay-50 duration-300"
           variant="contained"
+          onClick={handleFormSubmit}
         >
           Entrar
         </Button>

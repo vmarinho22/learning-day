@@ -1,4 +1,4 @@
-import prisma from "../service/database";
+import prisma from '@database';
 export const resolvers = {
   Query: {
     users: async () => {

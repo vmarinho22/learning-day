@@ -16,6 +16,11 @@
     "jsx": "preserve",
     "incremental": true,
     "baseUrl": "./",
+    "paths": {
+      "@components/*": ["src/components/*"],
+      "@database": ["src/services/database.ts"],
+      "@services/*": ["src/services/*"],
+    }
   },
   "include": [
     "next-env.d.ts", 

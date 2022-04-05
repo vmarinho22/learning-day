@@ -1,12 +1,9 @@
+import prisma from '@database';
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
-import type { NextApiRequest, NextApiResponse } from "next";
-import prisma from "../../../service/database";
 
-export default async function handler(
-  req: NextApiRequest,
-  res: NextApiResponse<any>
-) {
+export default async function handler(req: any,res: any ) {
+  console.log('a');
   if (req.method === "POST") {
     const { user, password } = req.body;
     let token;
@@ -38,5 +35,7 @@ export default async function handler(
     } else {
       res.status(401).json({ message: "Usuário ou Senha invalidos!" });
     }
+  }else{
+    res.status(401).json({ message: "Método não permitido" });
   }
 }

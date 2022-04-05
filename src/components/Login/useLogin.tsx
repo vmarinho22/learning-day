@@ -1,3 +1,4 @@
+import api from '@services/api';
 import { useState } from 'react';
 
 const useLogin = () => {
@@ -11,10 +12,22 @@ const useLogin = () => {
     event.preventDefault();
   };
 
-  const handleFormSubmit: any = (event: any) => {
+  const handleFormSubmit: any = async (event: any) => {
     event.preventDefault();
     const user = (document.querySelector("#user") as HTMLInputElement).value;
     const password = (document.querySelector("#password") as HTMLInputElement).value;
+
+    const data = {user, password};
+
+    const response = await api.post('/auth/login/', data);
+
+    if (response.status !== 200) {
+      return false
+    }
+
+    // TODO: Criar hook de cookie
+
+    console.log(response);
   };
 
   return {
