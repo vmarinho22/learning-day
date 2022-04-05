@@ -18,10 +18,10 @@ module.exports = {
       'yellow': colors.yellow,
       'green': colors.emerald,
       'purple': colors.violet,
-      'yellow': colors.amber,
       'pink': colors.fuchsia,
       'pr-purple': '#9055ff',
-      'pr-ocean' : '#13e2da'
+      'pr-ocean' : '#13e2da',
+      'trans-gray': 'rgba(255,255,255, 0.3)'
     },
     extend: {},
   },
