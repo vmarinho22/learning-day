@@ -51,7 +51,7 @@ const Dashboard: FC = (props) => {
           ))}
         </ul>
       </div>
-      <div className="h-screen overflow-y-auto p-7">{props.children}</div>
+      <div className="w-full h-screen overflow-y-auto p-7">{props.children}</div>
     </div>
   );
 };
