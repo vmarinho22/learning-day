@@ -3,7 +3,6 @@ import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 
 export default async function handler(req: any,res: any ) {
-  console.log('a');
   if (req.method === "POST") {
     const { user, password } = req.body;
     let token;

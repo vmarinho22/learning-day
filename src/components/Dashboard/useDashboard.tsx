@@ -1,5 +1,5 @@
 import { ReactElement, useRef, useState } from "react";
-import { FaHome, FaUsers } from "react-icons/fa";
+import { FaHome, FaRegListAlt, FaUsers } from "react-icons/fa";
 
 type Menu = {
     title: string;
@@ -12,8 +12,9 @@ const useDashboard = () => {
     const ref = useRef();
 
     const Menus: Menu[] = [
-        {title: 'Home', icon: <FaHome className="text-2xl"/>, path: '/'},
-        {title: 'Users', icon: <FaUsers className="text-2xl" />, path: '/users'},
+        {title: 'Home', icon: <FaHome className="text-2xl"/>, path: '/home'},
+        {title: 'Usuários', icon: <FaUsers className="text-2xl" />, path: '/users'},
+        {title: 'Treinamentos', icon: <FaRegListAlt className="text-2xl" />, path: '/trainings'},
     ];
 
     return {

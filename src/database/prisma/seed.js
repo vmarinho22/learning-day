@@ -47,7 +47,7 @@ function main() {
                         data: {
                             name: "system",
                             mail: "system",
-                            password: "$2a$12$I4vdKgZ8Ec/7PayjReZzguGmU9fCNbwM7THNP4J0zQH.eHKPPr9L6",
+                            password: "$2a$10$1LJecV8LJGLdK/kMJUiLge7dnrA4YheTQO2TVFzsBWCf1v21yKvr.",
                             permission: 0
                         }
                     })];
