@@ -30,7 +30,7 @@ export default async function handler(req: any,res: any ) {
         },
         process.env.SECRET || ''
       );
-      res.status(200).json({ message: "Login autorizado!", token });
+      res.status(200).json({ message: "Login autorizado!", token, user: query.id });
     } else {
       res.status(401).json({ message: "Usuário ou Senha invalidos!" });
     }

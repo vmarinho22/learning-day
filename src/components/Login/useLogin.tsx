@@ -1,8 +1,12 @@
 import api from '@services/api';
+import cookies from '@services/cookies';
+import { useRouter } from 'next/router';
 import { useState } from 'react';
 
 const useLogin = () => {
+  const router = useRouter();
   const [showPassword, setShowPassword] = useState<boolean>(false);
+  const { setCookie } = cookies();
 
   const handleClickShowPassword: any = () => {
     setShowPassword(!showPassword);
@@ -27,7 +31,10 @@ const useLogin = () => {
 
     // TODO: Criar hook de cookie
 
-    console.log(response);
+    setCookie('token', response.data.token);
+    setCookie('user', response.data.user);
+
+    router.push('/home');
   };
 
   return {

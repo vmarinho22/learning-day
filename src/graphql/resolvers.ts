@@ -8,5 +8,18 @@ export const resolvers = {
 
       return result;
     },
+    user: async (_ : any, { id }: any) => {
+      const [result] = await prisma.$transaction([
+        prisma.users.findUnique({
+          where: {
+            id
+          }
+        })
+      ]);
+
+      await prisma.$disconnect();
+
+      return result;
+    }
   },
 };
