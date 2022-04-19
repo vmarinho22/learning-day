@@ -91,9 +91,9 @@ export const typeDefs = gql`
         createUser(data: createUserInput!): User!
         updateUser(id: ID!, data: updateUserInput!): User!
         deleteUser(id: ID!): User!
-        createTraining(data: createTrainingInput!): Training!
-        updateTraining(id: ID!, data: updateTrainingInput!): Training!
-        deleteTraining(id: ID!): Training!
+        createTraining(data: createTrainingInput!): Trainings!
+        updateTraining(id: ID!, data: updateTrainingInput!): Trainings!
+        deleteTraining(id: ID!): Trainings!
         createHistoric(data: createHistoricInput!): Historic!
         updateHistoric(id: ID!, data: updateHistoricInput!): Historic!
         deleteHistoric(id: ID!): Historic!
