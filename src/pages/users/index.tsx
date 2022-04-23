@@ -1,50 +1,22 @@
-
+import { DataGrid, GridColDef, GridSelectionModel } from '@mui/x-data-grid';
+import api from '@services/api';
+import cookies from '@services/cookies';
 import Head from "next/head";
-import DataTable from 'react-data-table-component';
-import { FaEdit } from "react-icons/fa";
+import { useState } from 'react';
 import Dashboard from "../../components/Dashboard";
-import type { NextDashboardPage } from '../../types';
+import type { NextPagePropsType, UsersType } from '../../types/defaultTypes';
 
-const columns = [
-  {
-      name: 'Nome',
-      selector: (row: { name: any; }) => row.name,
-      sortable: true,
-  },
-  {
-      name: 'E-mail',
-      selector: (row: { mail: any; }) => row.mail,
-      sortable: true,
-  },
-  {
-      name: 'Permissão',
-      selector: (row: { permission: any; }) => row.permission,
-      sortable: true,
-  },
-  {
-      name: 'Ação',
-      selector: (row: { actions: any; }) => row.actions,
-      sortable: false,
-  },
-];
+const UsersPage = ({ data }: NextPagePropsType<UsersType[]>) => {
 
+  const [ selectionModel, setSelectionModel ] = useState<GridSelectionModel>([]);
+  const [ users ] = useState<UsersType[]>(data);
 
-const actions = <FaEdit onClick={() => null} />;
-
-const data = [
-  {id: 1, name: 'Teste One', mail: 'teste@teste.com', permission: 1, actions},
-  {id: 2, name: 'Teste Two', mail: 'teste@teste.com', permission: 1, actions},
-  {id: 3, name: 'Teste Three', mail: 'teste@teste.com', permission: 1, actions},
-  {id: 4, name: 'Teste Four', mail: 'teste@teste.com', permission: 1, actions},
-  {id: 5, name: 'Teste Five', mail: 'teste@teste.com', permission: 1, actions},
-  {id: 6, name: 'Teste Six', mail: 'teste@teste.com', permission: 1, actions},
-  {id: 7, name: 'Teste Seven', mail: 'teste@teste.com', permission: 1, actions},
-  {id: 8, name: 'Teste Eight', mail: 'teste@teste.com', permission: 1, actions},
-  {id: 9, name: 'Teste Nine', mail: 'teste@teste.com', permission: 1, actions},
-  {id: 10, name: 'Teste Ten', mail: 'teste@teste.com', permission: 1, actions},
-]
-
-const UsersPage: NextDashboardPage = () => {
+  const columns: GridColDef[] = [
+    { field: 'id' ,headerName: 'ID', width: 80},
+    { field: 'name' ,headerName: 'Nome', width: 200},
+    { field: 'mail' ,headerName: 'E-mail', width: 200},
+  ];
+  
   return (
     <>
       <Head>
@@ -52,11 +24,16 @@ const UsersPage: NextDashboardPage = () => {
       </Head>
       <h1 className="text-4xl italic font-semibold">Usuários</h1>
       <p className="mt-5">Aqui você irá gerenciar todas as ações dos usuários!</p>
-      <div className="w-full mt-5">
-        <DataTable
-            columns={columns}
-            data={data}
-            pagination
+      <div className="w-full mt-5" style={{height: '50vh'}}>
+        <DataGrid 
+          rows={users} 
+          columns={columns} 
+          checkboxSelection 
+          pagination
+          onSelectionModelChange={(newSelectionModel) => {
+            setSelectionModel(newSelectionModel);
+          }}
+          selectionModel={selectionModel}
         />
       </div>
     </>
@@ -70,3 +47,45 @@ UsersPage.getLayout = function getLayout(page: any) {
 }
 
 export default UsersPage;
+
+export const getServerSideProps = async (ctx: any) => {
+  const { getCookie } = cookies();
+
+  const token = getCookie('token', ctx);
+
+  try {
+    api.defaults.headers.common['authorization'] = `Bearer ${token}`;
+    api.defaults.headers.common['Content-Type'] = 'application/graphql';
+  
+    const response = await api.post('/graphql', {
+      query: `query getUsers{
+        users {
+            id
+            name
+            mail
+        }
+      }`
+    });
+
+    const data = response.data?.data?.users?.map((user: any, index: any) => {
+      return {
+        id: user.id,
+        name: user.name,
+        mail: user.mail
+      }
+    });
+
+    return {
+      props: {
+        data
+      },
+    };
+  } catch (err) {
+    console.error('Erro ao realizar requisição', err);
+    return {
+      props: {
+        data: []
+      },
+    };
+  }
+}

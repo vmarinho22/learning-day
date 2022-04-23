@@ -15,11 +15,13 @@
     "isolatedModules": true,
     "jsx": "preserve",
     "incremental": true,
+    "useUnknownInCatchVariables": false,
     "baseUrl": "./",
     "paths": {
       "@components/*": ["src/components/*"],
       "@database": ["src/services/database.ts"],
       "@services/*": ["src/services/*"],
+      "@types/*": ["src/types/*"],
     }
   },
   "include": [

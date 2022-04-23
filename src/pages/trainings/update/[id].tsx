@@ -1,7 +1,7 @@
 
 import Head from "next/head";
 import Dashboard from "../../../components/Dashboard";
-import type { NextDashboardPage } from '../../../types';
+import type { NextDashboardPage } from '../../../types/defaultTypes';
 
 const UpdateTrainingPage: NextDashboardPage = () => {
   return (

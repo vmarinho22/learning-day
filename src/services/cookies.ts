@@ -1,7 +1,7 @@
 import nookies from 'nookies';
 
 const cookies = () => {
-  const setCookie = (key: string, value: string, time: number = 60 * 60 * 6, path: string = '') => { // default -> 2 hour
+  const setCookie = (key: string, value: string, time: number = 60 * 60 * 6, path: string | undefined = undefined) => { // default -> 2 hour
     try {
         nookies.set(undefined, key, value, {
           maxAge: time,
@@ -21,18 +21,17 @@ const cookies = () => {
         return cookies;
     } catch (error) {
       console.log('getCookies Error: ', error);
-      return undefined;
+      return {};
     }
   };
 
   const getCookie = (key: string, ctx: any = undefined) => {
     let cookies;
+    cookies = nookies.get(ctx);
     try {
-        cookies = nookies.get(ctx);
-        return JSON.parse(cookies[key]);
+      return JSON.parse(cookies[key]);
     } catch (error) {
-      console.log('getCookie Error: ', error);
-      return undefined;
+      return cookies[key];
     }
   };
 

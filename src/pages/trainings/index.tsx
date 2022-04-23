@@ -3,7 +3,7 @@ import Head from "next/head";
 import DataTable from 'react-data-table-component';
 import { FaEdit } from "react-icons/fa";
 import Dashboard from "../../components/Dashboard";
-import type { NextDashboardPage } from '../../types';
+import type { NextDashboardPage } from '../../types/defaultTypes';
 
 const columns = [
   {
