@@ -11,7 +11,7 @@ const Dashboard: FC = (props) => {
       <div
         className={`${
           open ? "w-72" : "w-24"
-        } p-5 pt-6 duration-300 w-72 h-screen bg-gradient-to-r from-pr-purple to-pr-ocean relative`}
+        } p-5 pt-6 duration-300 h-screen bg-gradient-to-r from-pr-purple to-pr-ocean relative`}
       >
         <div className="absolute cursor-pointer -right-3 top-9 w-7 border-2 border-pr-ocean rounded-full bg-white">
           <div
