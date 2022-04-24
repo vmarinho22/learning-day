@@ -2,6 +2,10 @@ import api from '@services/api';
 import cookies from '@services/cookies';
 import { useRouter } from 'next/router';
 import { useState } from 'react';
+import Swal from 'sweetalert2';
+import withReactContent from 'sweetalert2-react-content';
+
+const MySwal = withReactContent(Swal);
 
 const useLogin = () => {
   const router = useRouter();
@@ -26,10 +30,13 @@ const useLogin = () => {
     const response = await api.post('/auth/login/', data);
 
     if (response.status !== 200) {
+      MySwal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        html: "Usuário ou senha incorretos!",
+      });
       return false
     }
-
-    // TODO: Criar hook de cookie
 
     setCookie('token', response.data.token);
     setCookie('user', response.data.user);

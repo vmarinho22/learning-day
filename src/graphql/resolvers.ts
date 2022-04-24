@@ -1,4 +1,5 @@
 import prisma from '@database';
+import bcrypt from 'bcrypt';
 
 export const resolvers = {
   Query: {
@@ -72,6 +73,10 @@ export const resolvers = {
   },
   Mutation: {
     createUser: async (_ : any, { data }: any) => {
+      const password = data.password;
+
+      data.password = await bcrypt.hash(password, 12);
+
       const [result] = await prisma.$transaction([
         prisma.users.create({
           data

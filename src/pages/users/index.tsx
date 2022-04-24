@@ -1,8 +1,10 @@
+import ActionsButton from '@components/ActionsButton';
 import { DataGrid, GridColDef, GridSelectionModel } from '@mui/x-data-grid';
 import api from '@services/api';
 import cookies from '@services/cookies';
 import Head from "next/head";
 import { useState } from 'react';
+import { FaPen, FaPlus } from "react-icons/fa";
 import Dashboard from "../../components/Dashboard";
 import type { NextPagePropsType, UsersType } from '../../types/defaultTypes';
 
@@ -22,20 +24,23 @@ const UsersPage = ({ data }: NextPagePropsType<UsersType[]>) => {
       <Head>
         <title>Usuários - Learning Day</title>
       </Head>
-      <h1 className="text-4xl italic font-semibold">Usuários</h1>
-      <p className="mt-5">Aqui você irá gerenciar todas as ações dos usuários!</p>
-      <div className="w-full mt-5" style={{height: '50vh'}}>
-        <DataGrid 
-          rows={users} 
-          columns={columns} 
-          checkboxSelection 
-          pagination
-          onSelectionModelChange={(newSelectionModel) => {
-            setSelectionModel(newSelectionModel);
-          }}
-          selectionModel={selectionModel}
-        />
-      </div>
+        <h1 className="text-4xl italic font-semibold">Usuários</h1>
+        <p className="mt-5">Aqui você irá gerenciar todas as ações dos usuários!</p>
+        <div className="w-full mt-5" style={{height: '50vh'}}>
+          <DataGrid 
+            rows={users} 
+            columns={columns} 
+            checkboxSelection 
+            pagination
+            onSelectionModelChange={(newSelectionModel) => {
+              setSelectionModel(newSelectionModel);
+            }}
+            selectionModel={selectionModel}
+          />
+        </div>
+        <ActionsButton items={selectionModel} link="users">
+          {selectionModel.length > 0 ? <FaPen /> : <FaPlus />}
+        </ActionsButton>
     </>
   );
 };
