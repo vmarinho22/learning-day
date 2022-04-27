@@ -6,6 +6,7 @@ export const typeDefs = gql`
         name: String!
         mail: String!
         permission: Int!
+        blocked: Boolean!
         createdAt: String!
         updatedAt: String!
     }

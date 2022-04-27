@@ -16,6 +16,7 @@ model Users {
   mail String @unique
   password String
   permission Int
+  blocked Boolean @default(false)
   historic Historic[]
   logs Logs[]
   createdAt DateTime @default(now())
