@@ -10,7 +10,7 @@ const MySwal = withReactContent(Swal);
 const useLogin = () => {
   const router = useRouter();
   const [showPassword, setShowPassword] = useState<boolean>(false);
-  const { setCookie } = cookies();
+  const { setNewCookie } = cookies();
 
   const handleClickShowPassword: any = () => {
     setShowPassword(!showPassword);
@@ -38,8 +38,8 @@ const useLogin = () => {
       return false
     }
 
-    setCookie('token', response.data.token);
-    setCookie('user', response.data.user);
+    setNewCookie('client','token', response.data.token);
+    setNewCookie('client', 'user', response.data.user);
 
     router.push('/home');
   };

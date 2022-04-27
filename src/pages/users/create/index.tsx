@@ -71,7 +71,7 @@ const CreateUserPage: NextDashboardPage = ({ token }: any) => {
       api.defaults.headers.common['authorization'] = `Bearer ${token}`;
       api.defaults.headers.common['Content-Type'] = 'application/graphql';
 
-      const response = await api.post('/graphql', {
+      await api.post('/graphql', {
         query: `mutation($data: createUserInput!) {
           createUser(data: $data) {
             name
@@ -87,11 +87,13 @@ const CreateUserPage: NextDashboardPage = ({ token }: any) => {
         }
       });
 
+      // TODO - criar sistema de envio de e-mail
+
       MySwal.fire({
         icon: 'success',
         title: 'Sucesso!',
-        html: "Usuário criado com sucesso!",
-      }).then((result) => {
+        html: "Usuário criado com sucesso! A o usuário e senha serão enviados para o e-mail informado.",
+      }).then(() => {
         router.push('/users');
       });
 
@@ -113,7 +115,7 @@ const CreateUserPage: NextDashboardPage = ({ token }: any) => {
       <Head>
         <title>Criar usuário - Learning Day</title>
       </Head>
-      <h1 className="text-4xl italic font-semibold">Criar usuário</h1>
+      <h1 className="text-4xl ">Criar usuário</h1>
       <p className="mt-5">Aqui você irá criar uma conta de usuário. Preencha todos os campos corretamente!</p>
       <br />
       <div className="w-2/3">
@@ -178,7 +180,6 @@ CreateUserPage.getLayout = function getLayout(page: any) {
 }
 
 export default CreateUserPage;
-
 
 export const getServerSideProps = (ctx: any) => {
   const { getCookie } = cookies();

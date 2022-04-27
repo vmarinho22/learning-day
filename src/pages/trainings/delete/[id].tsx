@@ -9,7 +9,7 @@ const DeleteTrainingPage: NextDashboardPage = () => {
       <Head>
         <title>Deletar usuário - Learning Day</title>
       </Head>
-      <h1 className="text-4xl italic font-semibold">Deletar usuário</h1>
+      <h1 className="text-4xl ">Deletar usuário</h1>
     </>
   );
 };

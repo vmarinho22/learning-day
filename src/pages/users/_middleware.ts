@@ -11,5 +11,6 @@ export async function middleware(req: NextRequest, ev: NextFetchEvent) {
         url.pathname = '/login';
         return NextResponse.redirect(url);
     }
+
     return NextResponse.next();
 }

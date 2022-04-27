@@ -50,7 +50,7 @@ const TrainingsPage: NextDashboardPage = () => {
       <Head>
         <title>Treinamentos - Learning Day</title>
       </Head>
-      <h1 className="text-4xl italic font-semibold">Treinamentos</h1>
+      <h1 className="text-4xl ">Treinamentos</h1>
       <p className="mt-5">Aqui você irá gerenciar todas as ações das categorias de treinamentos.</p>
       <div className="w-full mt-5">
         <DataTable

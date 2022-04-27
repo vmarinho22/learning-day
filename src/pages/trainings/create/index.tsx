@@ -9,7 +9,7 @@ const CreateTrainingPage: NextDashboardPage = () => {
       <Head>
         <title>Criar usuário - Learning Day</title>
       </Head>
-      <h1 className="text-4xl italic font-semibold">Criar usuário</h1>
+      <h1 className="text-4xl ">Criar usuário</h1>
     </>
   );
 };

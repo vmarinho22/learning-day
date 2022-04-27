@@ -9,7 +9,7 @@ const HomePage: NextDashboardPage = () => {
       <Head>
         <title>Ínicio - Learning Day</title>
       </Head>
-      <h1 className="text-4xl italic font-semibold">Home</h1>
+      <h1 className="text-4xl">Home</h1>
     </>
   );
 };
