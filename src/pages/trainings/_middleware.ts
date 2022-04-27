@@ -1,16 +1,16 @@
-import cookies from '@services/cookies';
-import type { NextFetchEvent, NextRequest } from 'next/server';
+import type { NextRequest } from 'next/server';
 import { NextResponse } from 'next/server';
 
 
-export async function middleware(req: NextRequest, ev: NextFetchEvent) {
+export async function middleware(req: NextRequest) {
     const url = req.nextUrl.clone();
-    const {setCookie} = cookies();
 
-    if (!req?.cookies?.user && !req?.cookies?.token) {
+    if (req.cookies?.user === undefined || req.cookies?.token === undefined) {
         url.pathname = '/login';
         return NextResponse.redirect(url);
+    }else{
+        console.log('ue');
     }
-    return NextResponse.next();
 
+    return NextResponse.next();
 }
