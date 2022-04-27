@@ -10,7 +10,7 @@ import cookies from '@services/cookies';
 import Head from "next/head";
 import Link from 'next/link';
 import { useState } from 'react';
-import { FaPen, FaPlus, FaTrashAlt } from "react-icons/fa";
+import { FaBan, FaPen, FaPlus } from "react-icons/fa";
 import Dashboard from "../../components/Dashboard";
 import type { NextPagePropsType, UsersType } from '../../types/defaultTypes';
 
@@ -19,7 +19,7 @@ const UsersPage = ({ data }: NextPagePropsType<UsersType[]>) => {
   const [page, setPage] = useState<number>(0);
   const [rowsPerPage, setRowsPerPage] = useState<number>(10);
 
-  const cols: string[] = ['ID', 'Nome', 'E-mail', 'Ações'];
+  const cols: string[] = ['ID', 'Nome', 'E-mail', 'Status','Ações'];
 
   const handleChangePage = (event: unknown, newPage: number) => {
     setPage(newPage);
@@ -52,16 +52,17 @@ const UsersPage = ({ data }: NextPagePropsType<UsersType[]>) => {
               <TableBody>
                 {data?.map((user: any, index: number) => (
                   <TableRow key={index}>
-                    <TableCell>{user.id}</TableCell>
+                    <TableCell>{index}</TableCell>
                     <TableCell>{user.name}</TableCell>
                     <TableCell>{user.mail}</TableCell>
+                    <TableCell>{user.blocked ? 'Bloqueado' : 'Ativo'}</TableCell>
                     <TableCell>
                       <div className="flex">
                         <Link href={`/users/update/${user.id}`} passHref>
                           <FaPen className="cursor-pointer mr-2" /> 
                         </Link>
-                        <Link href={`/users/delete/${user.id}`} passHref>
-                          <FaTrashAlt className="cursor-pointer mr-2" />
+                        <Link href={`/users/block/${user.id}`} passHref>
+                          <FaBan className="cursor-pointer mr-2" />
                         </Link>
                       </div>
                     </TableCell>
@@ -82,7 +83,7 @@ const UsersPage = ({ data }: NextPagePropsType<UsersType[]>) => {
         <div className="fixed bottom-4 right-4">
             <Link href="/users/create" passHref>
               <Fab className="bg-gradient-to-r from-pr-purple to-pr-ocean hover:from-pr-ocean hover:to-pr-purple duration-500 origin-left text-white" aria-label="add">
-                <FaPlus />
+                <FaPlus className="text-white" />
               </Fab>
             </Link>
         </div>
@@ -113,6 +114,7 @@ export const getServerSideProps = async (ctx: any) => {
           id
           name
           mail
+          blocked
         }
       }`
     });
@@ -121,13 +123,14 @@ export const getServerSideProps = async (ctx: any) => {
       return {
         id: user.id,
         name: user.name,
-        mail: user.mail
+        mail: user.mail,
+        blocked: user.blocked
       }
     });
 
     return {
       props: {
-        data
+        data: data || []
       },
     };
   } catch (err) {
