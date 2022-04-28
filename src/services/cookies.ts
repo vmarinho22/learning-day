@@ -43,7 +43,7 @@ const cookies = () => {
     }
   };
 
-  const setNewCookie = (context: string, key: string, value: any, time = 60 * 60 * 6) => { // default -> 2 hour
+  const setNewCookie = (context: string, key: string, value: any, time = 60 * 60 * 2) => { // default -> 2 hour
     try {
       if (context === 'client') {
         setCookie(undefined, key, value, {
