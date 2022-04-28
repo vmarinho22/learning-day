@@ -30,21 +30,21 @@ export const typeDefs = gql`
         id: ID!
         name: String!
         description: String!
-        valid: Int!
+        validity: Int!
         createdAt: String!
         updatedAt: String!
     }
 
     input createTrainingInput {
         name: String!
-        description: String!
-        valid: Int!
+        description: String
+        validity: Int!
     }
 
     input updateTrainingInput {
         name: String
         description: String
-        valid: Int
+        validity: Int
     }
 
     type Historic {

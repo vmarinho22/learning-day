@@ -26,7 +26,7 @@ model Users {
 model Trainings {
   id String @id @default(uuid())
   name String
-  description String
+  description String?
   validity Int
   historic Historic[]
   createdAt DateTime @default(now())
