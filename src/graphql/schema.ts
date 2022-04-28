@@ -23,6 +23,7 @@ export const typeDefs = gql`
         mail: String
         password: String
         permission: Int
+        blocked: Boolean
     }
 
     type Trainings {
