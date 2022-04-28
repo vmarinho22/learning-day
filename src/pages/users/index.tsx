@@ -14,12 +14,16 @@ import { FaBan, FaPen, FaPlus } from "react-icons/fa";
 import Dashboard from "../../components/Dashboard";
 import type { NextPagePropsType, UsersType } from '../../types/defaultTypes';
 
+const permissions: string[] = ['Super Administrador', 'Administrador', 'Usuário'];
+
 const UsersPage = ({ data }: NextPagePropsType<UsersType[]>) => {
+
+  console.log(data);
 
   const [page, setPage] = useState<number>(0);
   const [rowsPerPage, setRowsPerPage] = useState<number>(10);
 
-  const cols: string[] = ['ID', 'Nome', 'E-mail', 'Status','Ações'];
+  const cols: string[] = ['ID', 'Nome', 'E-mail', 'Permissão', 'Status','Ações'];
 
   const handleChangePage = (event: unknown, newPage: number) => {
     setPage(newPage);
@@ -52,19 +56,25 @@ const UsersPage = ({ data }: NextPagePropsType<UsersType[]>) => {
               <TableBody>
                 {data?.map((user: any, index: number) => (
                   <TableRow key={index}>
+                    {console.log(user.permission)}
                     <TableCell>{index}</TableCell>
                     <TableCell>{user.name}</TableCell>
                     <TableCell>{user.mail}</TableCell>
+                    <TableCell>{permissions[user.permission]}</TableCell>
                     <TableCell>{user.blocked ? 'Bloqueado' : 'Ativo'}</TableCell>
                     <TableCell>
-                      <div className="flex">
-                        <Link href={`/users/update/${user.id}`} passHref>
-                          <FaPen className="cursor-pointer mr-2" /> 
-                        </Link>
-                        <Link href={`/users/block/${user.id}`} passHref>
-                          <FaBan className="cursor-pointer mr-2" />
-                        </Link>
-                      </div>
+                        <div className="flex">
+                          {user.name !== 'system' && (
+                            <Link href={`/users/update/${user.id}`} passHref>
+                              <FaPen className="cursor-pointer mr-2" /> 
+                            </Link>
+                          )}
+                          {user.name !== 'system' && (
+                            <Link href={`/users/block/${user.id}`} passHref>
+                             <FaBan className="cursor-pointer mr-2" />
+                           </Link>
+                          )}
+                        </div>
                     </TableCell>
                   </TableRow>
                 ))}
@@ -114,6 +124,7 @@ export const getServerSideProps = async (ctx: any) => {
           id
           name
           mail
+          permission
           blocked
         }
       }`
@@ -124,6 +135,7 @@ export const getServerSideProps = async (ctx: any) => {
         id: user.id,
         name: user.name,
         mail: user.mail,
+        permission: user.permission,
         blocked: user.blocked
       }
     });
