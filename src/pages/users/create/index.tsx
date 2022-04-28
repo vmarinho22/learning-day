@@ -184,7 +184,7 @@ export default CreateUserPage;
 export const getServerSideProps = (ctx: any) => {
   const { getCookie } = cookies();
 
-  const token = getCookie('token', ctx);
+  const token = getCookie('server', 'token', ctx);
 
   return {
     props: {

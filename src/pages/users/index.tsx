@@ -9,7 +9,7 @@ import api from '@services/api';
 import cookies from '@services/cookies';
 import Head from "next/head";
 import Link from 'next/link';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { FaBan, FaPen, FaPlus } from "react-icons/fa";
 import Dashboard from "../../components/Dashboard";
 import type { NextPagePropsType, UsersType } from '../../types/defaultTypes';
@@ -18,16 +18,21 @@ const permissions: string[] = ['Super Administrador', 'Administrador', 'Usuário
 
 const UsersPage = ({ data }: NextPagePropsType<UsersType[]>) => {
 
-  console.log(data);
-
   const [page, setPage] = useState<number>(0);
   const [rowsPerPage, setRowsPerPage] = useState<number>(10);
+  const [usersToRender, setUsersToRender] = useState<any[]>(data.slice(0, rowsPerPage));
 
   const cols: string[] = ['ID', 'Nome', 'E-mail', 'Permissão', 'Status','Ações'];
 
   const handleChangePage = (event: unknown, newPage: number) => {
     setPage(newPage);
+    setUsersToRender(data.slice(newPage * rowsPerPage, (newPage + 1) * rowsPerPage));
   };
+
+  useEffect(() => {
+    setUsersToRender(data.slice(page * rowsPerPage, (page + 1) * rowsPerPage));
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [rowsPerPage]);
 
   const handleChangeRowsPerPage = (event: React.ChangeEvent<HTMLInputElement>) => {
     setRowsPerPage(parseInt(event.target.value, 10));
@@ -42,7 +47,7 @@ const UsersPage = ({ data }: NextPagePropsType<UsersType[]>) => {
         <h1 className="text-4xl">Usuários</h1>
         <p className="mt-5">Aqui você irá gerenciar todas as ações dos usuários!</p>
         <div className="w-full mt-5" style={{height: '50vh'}}>
-          <TableContainer sx={{ maxHeight: "50vh", maxWidth: "100%"}}>
+          <TableContainer sx={{ minHeight: "70vh", maxWidth: "100%"}}>
             <Table stickyHeader aria-label="sticky label">
               <TableHead>
                 <TableRow>                  
@@ -54,10 +59,9 @@ const UsersPage = ({ data }: NextPagePropsType<UsersType[]>) => {
                 </TableRow>
               </TableHead>
               <TableBody>
-                {data?.map((user: any, index: number) => (
+                {usersToRender?.map((user: any, index: number) => (
                   <TableRow key={index}>
-                    {console.log(user.permission)}
-                    <TableCell>{index}</TableCell>
+                    <TableCell>{(index + 1) + (page * rowsPerPage)}</TableCell>
                     <TableCell>{user.name}</TableCell>
                     <TableCell>{user.mail}</TableCell>
                     <TableCell>{permissions[user.permission]}</TableCell>
