@@ -41,12 +41,12 @@ const UserProfile = ({ id, user, trainings }: any) => {
           <p>Nenhum treinamento realizado :/</p>
       )}
       <div className="fixed bottom-4 right-4">
-            <Link href={`/users/update/${id}`} passHref>
-              <Fab className="bg-gradient-to-r from-pr-purple to-pr-ocean hover:from-pr-ocean hover:to-pr-purple duration-500 origin-left text-white" aria-label="add">
-                <FaPen className="text-white" />
-              </Fab>
-            </Link>
-        </div>
+        <Link href={`/users/update/${id}`} passHref>
+          <Fab className="bg-gradient-to-r from-pr-purple to-pr-ocean hover:from-pr-ocean hover:to-pr-purple duration-500 origin-left text-white" aria-label="add">
+            <FaPen className="text-white" />
+          </Fab>
+        </Link>
+      </div>
     </>
   );
 };
