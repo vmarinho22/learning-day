@@ -10,7 +10,7 @@ import cookies from '@services/cookies';
 import Head from "next/head";
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
-import { FaBan, FaPen, FaPlus } from "react-icons/fa";
+import { FaBan, FaPen, FaUnlockAlt, FaUser, FaUserPlus } from "react-icons/fa";
 import Dashboard from "../../components/Dashboard";
 import type { NextPagePropsType, UsersType } from '../../types/defaultTypes';
 
@@ -68,6 +68,9 @@ const UsersPage = ({ data }: NextPagePropsType<UsersType[]>) => {
                     <TableCell>{user.blocked ? 'Bloqueado' : 'Ativo'}</TableCell>
                     <TableCell>
                         <div className="flex">
+                          <Link href={`/users/${user.id}`} passHref>
+                            <FaUser className="cursor-pointer mr-2" /> 
+                          </Link>
                           {user.name !== 'system' && (
                             <Link href={`/users/update/${user.id}`} passHref>
                               <FaPen className="cursor-pointer mr-2" /> 
@@ -75,7 +78,7 @@ const UsersPage = ({ data }: NextPagePropsType<UsersType[]>) => {
                           )}
                           {user.name !== 'system' && (
                             <Link href={`/users/block/${user.id}`} passHref>
-                             <FaBan className="cursor-pointer mr-2" />
+                              {!user.blocked ? <FaBan className="cursor-pointer mr-2" /> : <FaUnlockAlt className="cursor-pointer mr-2" />}
                            </Link>
                           )}
                         </div>
@@ -97,7 +100,7 @@ const UsersPage = ({ data }: NextPagePropsType<UsersType[]>) => {
         <div className="fixed bottom-4 right-4">
             <Link href="/users/create" passHref>
               <Fab className="bg-gradient-to-r from-pr-purple to-pr-ocean hover:from-pr-ocean hover:to-pr-purple duration-500 origin-left text-white" aria-label="add">
-                <FaPlus className="text-white" />
+                <FaUserPlus className="text-white" />
               </Fab>
             </Link>
         </div>
