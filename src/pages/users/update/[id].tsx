@@ -98,13 +98,12 @@ const UpdateUserPage: NextDashboardPage = ({ token, user }: any) => {
             },
           });
 
-          // TODO - criar sistema de envio de e-mail
-
           MySwal.fire({
             icon: "success",
             title: "Sucesso!",
             html: "Usuário atualizado com sucesso!",
           }).then(() => {
+            setLoading(false);
             router.push("/users");
           });
         } catch (error) {
