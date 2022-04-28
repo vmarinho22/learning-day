@@ -168,11 +168,12 @@ const UpdateUserPage: NextDashboardPage = ({ token, user }: any) => {
             id="permission"
             label="Permissão"
             value={permission}
+            defaultValue={permission}
             onChange={handleChangingPermission}
           >
-            <MenuItem value={0}>Usuário</MenuItem>
+            <MenuItem value={0}>Super Administrador</MenuItem>
             <MenuItem value={1}>Administrador</MenuItem>
-            <MenuItem value={2}>Super Administrador</MenuItem>
+            <MenuItem value={2}>Usuário</MenuItem>
           </Select>
         </FormControl>
         <LoadingButton
