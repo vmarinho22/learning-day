@@ -17,7 +17,11 @@ export const resolvers = {
       return result;
     },
     users: async (_ : any) => {
-      const [result] = await prisma.$transaction([prisma.users.findMany()]);
+      const [result] = await prisma.$transaction([prisma.users.findMany({
+        orderBy: {
+          createdAt: 'asc',
+        },
+      })]);
 
       await prisma.$disconnect();
 
@@ -28,7 +32,7 @@ export const resolvers = {
         prisma.trainings.findUnique({
           where: {
             id
-          }
+          },
         })
       ]);
 
@@ -37,7 +41,11 @@ export const resolvers = {
       return result;
     },
     trainings: async (_ : any) => {
-      const [result] = await prisma.$transaction([prisma.trainings.findMany()]);
+      const [result] = await prisma.$transaction([prisma.trainings.findMany({
+        orderBy: {
+          createdAt: 'asc',
+        },
+      })]);
 
       await prisma.$disconnect();
 
@@ -57,7 +65,11 @@ export const resolvers = {
       return result;
     },
     historics: async (_ : any) => {
-      const [result] = await prisma.$transaction([prisma.historic.findMany()]);
+      const [result] = await prisma.$transaction([prisma.historic.findMany({
+        orderBy: {
+          createdAt: 'asc',
+        },
+      })]);
 
       await prisma.$disconnect();
 

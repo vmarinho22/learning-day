@@ -10,7 +10,7 @@ import cookies from "@services/cookies";
 import Head from "next/head";
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import { FaPen, FaPlus, FaTrashAlt } from "react-icons/fa";
+import { FaPen, FaPlus } from "react-icons/fa";
 import Dashboard from "../../components/Dashboard";
 import type { NextDashboardPage } from "../../types/defaultTypes";
 
@@ -76,12 +76,8 @@ const TrainingsPage: NextDashboardPage = ({ trainings }: any) => {
                     <TableCell>{handleConvertData(training.createdAt)}</TableCell>
                     <TableCell>
                       <div className="flex">
-                        <Link href={`/trainings/update/${trainings.id}`} passHref>
+                        <Link href={`/trainings/update/${training.id}`} passHref>
                           <FaPen className="cursor-pointer mr-2" />
-                        </Link>
-
-                        <Link href={`/trainings/delete/${trainings.id}`} passHref>
-                          <FaTrashAlt className="cursor-pointer mr-2" />
                         </Link>
                       </div>
                     </TableCell>
