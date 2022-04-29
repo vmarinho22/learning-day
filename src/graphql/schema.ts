@@ -7,6 +7,7 @@ export const typeDefs = gql`
         mail: String!
         permission: Int!
         blocked: Boolean!
+        historic: [Historic]!
         createdAt: String!
         updatedAt: String!
     }
@@ -51,6 +52,7 @@ export const typeDefs = gql`
         id: ID!
         userId: ID!
         trainingId: ID!
+        training: Trainings
         createdAt: String!
         updatedAt: String!
     }

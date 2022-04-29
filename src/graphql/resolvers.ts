@@ -8,6 +8,13 @@ export const resolvers = {
         prisma.users.findUnique({
           where: {
             id
+          },
+          include: {
+            historic: {
+              include: {
+                training: true
+              }
+            }
           }
         })
       ]);
@@ -21,6 +28,13 @@ export const resolvers = {
         orderBy: {
           createdAt: 'asc',
         },
+        include: {
+          historic: {
+            include: {
+              training: true
+            }
+          }
+        }
       })]);
 
       await prisma.$disconnect();
@@ -56,6 +70,9 @@ export const resolvers = {
         prisma.historic.findUnique({
           where: {
             id
+          },
+          include: {
+            training: true
           }
         })
       ]);
@@ -69,6 +86,9 @@ export const resolvers = {
         orderBy: {
           createdAt: 'asc',
         },
+        include: {
+          training: true
+        }
       })]);
 
       await prisma.$disconnect();
