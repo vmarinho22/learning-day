@@ -53,6 +53,7 @@ export const typeDefs = gql`
         userId: ID!
         trainingId: ID!
         training: Trainings
+        user: User
         createdAt: String!
         updatedAt: String!
     }
@@ -79,6 +80,11 @@ export const typeDefs = gql`
     input createLogInput {
         userId: ID!
         trainingId: ID!
+    }
+
+    type Losers {
+        name: String!
+
     }
 
     type Query {
