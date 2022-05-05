@@ -53,7 +53,7 @@ const HomePage: NextDashboardPage = ({ losers }: any) => {
       <p className="font-medium">Veja aqui os treinamentos a expirar esse mês!</p>
       <br />
       {losers.length === 0 && <p className="font-bold">Não há treinamentos a expirar esse mês!</p>}
-      {losers.length > 0 && (
+      {losersToRender.length > 0 && (
         <div className="w-2/3">
           <TableContainer sx={{ height: "50vh", maxWidth: "100%" }}>
             <Table stickyHeader aria-label="sticky label">
