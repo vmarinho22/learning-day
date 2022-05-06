@@ -137,21 +137,25 @@ export const getServerSideProps = async (ctx: any) => {
 
     const historics = fetchedHistorics?.data?.data?.historics;
 
-    const losers = historics.map((historic: any) => {
+    let losers: any[] = [];
+
+    historics.map((historic: any) => {
       const expirationDate = handleShowExpirationDate(
         historic.updatedAt,
         historic.training.validity
       );
 
-      if (expirationDate >= firstDayMonth && expirationDate <= lastDayMonth) {
-        return {
+      if (expirationDate > firstDayMonth && expirationDate < lastDayMonth) {
+        losers.push({
           id: historic.user?.id,
           user: historic?.user?.name,
           training: historic?.training?.name,
           expiration: expirationDate.toLocaleString(),
-        };
+        });
       }
     });
+
+    console.log(losers);
     return {
       props: {
         losers: losers || [],
