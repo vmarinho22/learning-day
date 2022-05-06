@@ -29,6 +29,8 @@ const useLogin = () => {
 
     const response = await api.post('/auth/login/', data);
 
+    console.log(response);
+
     if (response.status !== 200) {
       MySwal.fire({
         icon: 'error',

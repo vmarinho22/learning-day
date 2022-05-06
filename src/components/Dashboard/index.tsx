@@ -1,10 +1,9 @@
 import Image from "next/image";
 import Link from "next/link";
-import type { FC } from "react";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 import useDashboard from "./useDashboard";
 
-const Dashboard: FC = (props) => {
+const Dashboard: any = (props: any) => {
   const { open, setOpen, Menus, ref } = useDashboard();
   return (
     <div className="flex">

@@ -173,7 +173,7 @@ const UpdateTrainingPage: NextDashboardPage = ({token, training, id}: any) => {
             loading={loading}
             onClick={handleSubmit}
           >
-            Cadastrar
+            Atualizar
           </LoadingButton>
         </div>
       </form>
