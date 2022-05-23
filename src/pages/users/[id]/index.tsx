@@ -89,7 +89,7 @@ const UserProfile = ({ id, user }: any) => {
       )}
 
       {trainingsToRender.length >= 0 && (
-        <>
+        <div className="w-2/3">
           <TableContainer sx={{height: "48vh", maxWidth: "100%"}}>
             <Table stickyHeader aria-label="sticky label">
             <TableHead>
@@ -130,7 +130,7 @@ const UserProfile = ({ id, user }: any) => {
             onPageChange={handleChangePage}
             onRowsPerPageChange={handleChangeRowsPerPage}
           />
-        </>
+        </div>
       )}
       <div className="fixed bottom-4 right-4">
         <Link href={`/users/update/${id}`} passHref>

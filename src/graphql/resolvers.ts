@@ -72,7 +72,8 @@ export const resolvers = {
             id
           },
           include: {
-            training: true
+            training: true,
+            user: true
           }
         })
       ]);
@@ -87,7 +88,8 @@ export const resolvers = {
           createdAt: 'asc',
         },
         include: {
-          training: true
+          training: true,
+          user: true
         }
       })]);
 
