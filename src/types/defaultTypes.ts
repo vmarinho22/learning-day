@@ -11,3 +11,9 @@ export type UsersType = {
   name: string;
   mail: string;
 }
+
+export type UserType = {
+  id: string;
+  name: string;
+  mail: string;
+}

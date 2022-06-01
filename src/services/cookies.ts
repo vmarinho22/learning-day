@@ -1,4 +1,4 @@
-import nookies, { parseCookies, setCookie } from 'nookies';
+import nookies, { destroyCookie, parseCookies, setCookie } from 'nookies';
 
 const cookies = () => {
   const getCookies = (context: string, ctx = undefined) => {
@@ -34,13 +34,23 @@ const cookies = () => {
     }
   };
 
-  const destroyCookie = (context: string, key: string) => {
+  const deleteCookie = (context: string, key: string) => {
     try {
-      nookies.destroy(undefined, `hh_${key}`);
-      return true;
+      if (context === 'client') {
+        destroyCookie(null, key, {
+          path: '/'
+        });
+        return true;
+      } if (context === 'server') {
+        nookies.destroy(null, key);
+        return true;
+      }
+      return false;
     } catch (error) {
+      console.error('deleteCookie Error: ', error);
       return false;
     }
+
   };
 
   const setNewCookie = (context: string, key: string, value: any, time = 60 * 60 * 2) => { // default -> 2 hour
@@ -64,7 +74,7 @@ const cookies = () => {
   };
 
   return {
-    setNewCookie, getCookies, getCookie, destroyCookie
+    setNewCookie, getCookies, getCookie, deleteCookie
   };
 };
 
