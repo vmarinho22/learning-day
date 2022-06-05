@@ -22,6 +22,7 @@
       "@database": ["src/services/database.ts"],
       "@services/*": ["src/services/*"],
       "@types/*": ["src/types/*"],
+      "@context/*": ["src/context/*"],
     }
   },
   "include": [
