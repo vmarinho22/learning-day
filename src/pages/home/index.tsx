@@ -33,8 +33,7 @@ const HomePage: NextDashboardPage = ({ losers }: any) => {
     setLosersToRender(
       losers.slice(page * rowsPerPage, (page + 1) * rowsPerPage)
     );
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [rowsPerPage]);
+  }, [losers, page, rowsPerPage]);
 
   const handleChangeRowsPerPage = (
     event: React.ChangeEvent<HTMLInputElement>

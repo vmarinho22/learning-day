@@ -15,7 +15,6 @@ const Login: FC = () => {
   const {
     showPassword,
     handleClickShowPassword,
-    handleMouseDownPassword,
     handleFormSubmit,
   } = useLogin();
 
@@ -46,7 +45,6 @@ const Login: FC = () => {
               <IconButton
                 aria-label="toggle password visibility"
                 onClick={handleClickShowPassword}
-                onMouseDown={handleMouseDownPassword}
                 edge="end"
               >
                 {showPassword ? <BiHide /> : <BiShow />}

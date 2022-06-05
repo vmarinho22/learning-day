@@ -1,13 +1,22 @@
-import { ReactElement, useEffect, useRef, useState } from "react";
+import { Dispatch, MutableRefObject, ReactElement, SetStateAction, useEffect, useRef, useState } from "react";
 import { FaHome, FaRegListAlt, FaUsers } from "react-icons/fa";
 
 type Menu = {
     title: string;
-    icon: ReactElement<any, any>;
+    icon: ReactElement;
     path: string;
 }
 
-const useDashboard = () => {
+type DashboardReturnType = {
+    open: boolean;
+    setOpen: Dispatch<SetStateAction<boolean>>
+    Menus: Menu[];
+    ref: MutableRefObject<any>
+}
+
+type DashboardType = () => DashboardReturnType
+
+const useDashboard: DashboardType = () => {
     const [open, setOpen] = useState(true);
     const ref = useRef();
 
